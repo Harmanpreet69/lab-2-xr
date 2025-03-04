@@ -57,7 +57,7 @@ const createScene = async function () {
   const model = meshes.meshes[0]; // The first mesh in the imported model
 
   // Scale the model appropriately (adjust the scale as necessary)
-  model.scaling = new BABYLON.Vector3(0.2, 0.2, 0.2); // Example scaling factor
+  model.scaling = new BABYLON.Vector3(1, 1, 1);
 
   // Position the model on the floor (y position will be set dynamically based on hit-test)
   model.position.y = 0;
