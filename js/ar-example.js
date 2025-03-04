@@ -48,25 +48,23 @@ const createScene = async function () {
   box.position.z = 2;
 
   // Import a glTF model
-  BABYLON.SceneLoader.ImportMesh(
+  const meshes = await BABYLON.SceneLoader.ImportMeshAsync(
     "",
     "../gltf/",
     "Wolf-Blender-2.82a.glb",
-    scene,
-    function (meshes) {
-      const model = meshes[0]; // The first mesh in the imported model
-
-      // Scale the model appropriately (adjust the scale as necessary)
-      model.scaling = new BABYLON.Vector3(0.2, 0.2, 0.2); // Example scaling factor
-
-      // Position the model on the floor (y position will be set dynamically based on hit-test)
-      model.position.y = 0;
-
-      // Optionally, make the model visible or apply any material modifications
-      model.material = new BABYLON.StandardMaterial("modelMat", scene);
-      model.material.diffuseColor = new BABYLON.Color3(0.5, 0.5, 1); // Change color to blue for example
-    }
+    scene
   );
+  const model = meshes.meshes[0]; // The first mesh in the imported model
+
+  // Scale the model appropriately (adjust the scale as necessary)
+  model.scaling = new BABYLON.Vector3(0.2, 0.2, 0.2); // Example scaling factor
+
+  // Position the model on the floor (y position will be set dynamically based on hit-test)
+  model.position.y = 0;
+
+  // Optionally, make the model visible or apply any material modifications
+  model.material = new BABYLON.StandardMaterial("modelMat", scene);
+  model.material.diffuseColor = new BABYLON.Color3(0.5, 0.5, 1); // Change color to blue for example
 
   /* SOUNDS
     ---------------------------------------------------------------------------------------------------- */
