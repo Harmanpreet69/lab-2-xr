@@ -1,6 +1,6 @@
 // Get the canvas element as a const
 const canvas = document.getElementById("renderCanvas");
-// Create the BABYON 3D engine, and attach it to the canvas
+// Create the BABYLON 3D engine, and attach it to the canvas
 const engine = new BABYLON.Engine(canvas, true);
 // The createScene function
 const createScene = async function () {
@@ -139,8 +139,18 @@ const createScene = async function () {
         .then((anchor) => {
           // STEP 8b: Attach the box to the anchor
           anchor.attachedNode = box;
-          anchor.attachedNode = model;
-          model.position.y = 0;
+          // Attach the model to a separate anchor
+          const modelAnchor = anchors.addAnchorPointUsingHitTestResultAsync(
+            latestHitTestResults[0]
+          );
+          modelAnchor
+            .then((modelAnchor) => {
+              modelAnchor.attachedNode = model;
+              model.position.y = 0;
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         })
         .catch((error) => {
           console.log(error);
