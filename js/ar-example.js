@@ -50,7 +50,7 @@ const createScene = async function () {
   // Import a glTF model
   BABYLON.SceneLoader.ImportMesh(
     "",
-    "../gltf",
+    "../gltf/",
     "Wolf-Blender-2.82a.glb",
     scene,
     function (meshes) {
